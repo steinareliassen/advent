@@ -5,7 +5,7 @@ fun main() {
         "${line.find { it.isDigit() }}${line.reversed().find { it.isDigit() }}".toInt()
     }.sum())
 
-    // Day 2 Part 2 
+    // Day 1 Part 2 
     fun numberify(input : String, startEnd : Boolean = false) : String =
         numbers.reduce {
                 x,y ->
