@@ -9,7 +9,7 @@ fun main() {
             else -> card.digitToInt()
         }
 
-    fun score(card: String) = card.toList()
+    fun score(cards: String) = cards.toList()
         .groupBy { it }
         .map { it.value.size }.sortedDescending().let {
             when {
@@ -23,16 +23,16 @@ fun main() {
             }
         }
 
-    fun maximize(card: String) =
-        card.replace('J', card.toList().reduce { x, y ->
+    fun maximize(cards: String) =
+        cards.replace('J', cards.toList().reduce { x, y ->
             if (y == 'J') x else
-                if (score(card.replace('J', x)) > score(card.replace('J', y)))
+                if (score(cards.replace('J', x)) > score(cards.replace('J', y)))
                     x else y
         })
 
-    fun compare(card: String, ocard: String, balance : Boolean): Boolean =
+    fun compare(card: String, ocard: String): Boolean =
         Pair(toCardInt(card.first()), toCardInt(ocard.first())).let {
-            if (it.first == it.second) compare(card.substring(1), ocard.substring(1), balance)
+            if (it.first == it.second) compare(card.substring(1), ocard.substring(1))
             else it.first > it.second
         }
 
@@ -45,7 +45,7 @@ fun main() {
                 val cards = maximize(cardslow)
                 if (index == oindex) 0
                 else if (score(cards) == score(ocards)) {
-                    if (compare(cardslow, ocardslow, true)) 1 else 0
+                    if (compare(cardslow, ocardslow)) 1 else 0
                 } else
                     if (score(cards) > score(ocards)) 1 else 0
             }.sum() + 1) * bet.toInt()
