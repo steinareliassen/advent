@@ -1,5 +1,5 @@
 fun main() {
-
+    //
     var currentLocation = Pair(111,15)
     var wayIn = 1
     var length = 0
