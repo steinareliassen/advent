@@ -1,7 +1,7 @@
 package advent.year2023
 
 fun main() {
-    part1_and_2("part 1",1L)
+    part1_and_2("part 1",2L)
     part1_and_2("part 2",1000000L)
 }
 
@@ -28,32 +28,20 @@ fun part1_and_2(part : String, multiple : Long) {
                 val emptyRCount = emptyRows.filter { ir > it }.size.toLong()
                 val emptyCCount = emptyCols.filter { ic > it }.size.toLong()
 
-                Pair((ir + if ( emptyRCount>0) (if (multiple > 1) emptyRCount*multiple-emptyRCount else emptyRCount) else 0),
-                    (ic+ if (emptyCCount >0) (if (multiple >1) emptyCCount*multiple-emptyCCount else emptyCCount) else 0))
+                Pair((ir + if ( emptyRCount>0) emptyRCount*multiple-emptyRCount else 0),
+                    (ic+ if (emptyCCount >0) emptyCCount*multiple-emptyCCount else 0))
             } else null
         }
     }.flatten().let { list ->
-        list.windowed(list.size, partialWindows = true).filter { it.size >= 2 }.associate { pair ->
-            pair.first() to pair.drop(1).map { diff(it, pair.first()) }.reduce { acc, s ->
+        list.windowed(list.size, partialWindows = true).filter { it.size >= 2 }.map { pair ->
+            pair.drop(1).map { diff(it, pair.first()) }.reduce { acc, s ->
                 acc + s
             }
-        }.values.sum()
+        }.sum()
     }
 
     println("answer to $part is $galaxyGrid")
 }
-val day11test = """
-...#......
-.......#..
-#.........
-..........
-......#...
-.#........
-.........#
-..........
-.......#..
-#...#.....
-""".trimIndent()
 
 val day11map = """
 ...........................#...................#...........................................................................................#
