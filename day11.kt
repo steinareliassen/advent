@@ -28,8 +28,8 @@ fun part1_and_2(part : String, multiple : Long) {
                 val emptyRCount = emptyRows.filter { ir > it }.size.toLong()
                 val emptyCCount = emptyCols.filter { ic > it }.size.toLong()
 
-                Pair((ir + if ( emptyRCount>0) emptyRCount*multiple-emptyRCount else 0),
-                    (ic+ if (emptyCCount >0) emptyCCount*multiple-emptyCCount else 0))
+                Pair((ir + if ( emptyRCount>0) emptyRCount*(multiple-1) else 0),
+                    (ic+ if (emptyCCount >0) emptyCCount*(multiple-1) else 0))
             } else null
         }
     }.flatten().let { list ->
