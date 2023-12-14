@@ -38,6 +38,8 @@ fun main() {
                 }
 
             } else {
+                // We did not find any mirrored lines. If we have not pivoted yet, do so now, if we have
+                // throw an error, this should not happened, all matrixed should have a mirrored line.
                 if (!pivot) throw Exception("Should have been found")
                 else reflect(pivot(matrix), 0, false)
             }
