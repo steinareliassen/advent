@@ -31,7 +31,6 @@ fun main() {
             if (visitedMap.contains(Triple(x, y, direction)))
                 return
 
-
             // Mark as visited
             visitedMap.add(Triple(x, y, direction))
 
@@ -48,7 +47,6 @@ fun main() {
                         Direction.WEST -> Direction.SOUTH
                     }
                 )
-
                 '\\' -> nextPos(
                     x,
                     y,
@@ -59,7 +57,6 @@ fun main() {
                         Direction.WEST -> Direction.NORTH
                     }
                 )
-
                 '-' ->
                     if (direction == Direction.WEST || direction == Direction.EAST) nextPos(x, y, direction)
                     else {
@@ -67,7 +64,6 @@ fun main() {
                         traverse(splitX, splitY, splitDirection)
                         nextPos(x, y, Direction.EAST)
                     }
-
                 '|' ->
                     if (direction == Direction.SOUTH || direction == Direction.NORTH) nextPos(x, y, direction)
                     else {
@@ -75,7 +71,6 @@ fun main() {
                         traverse(splitX, splitY, splitDirection)
                         nextPos(x, y, Direction.SOUTH)
                     }
-
                 else -> throw Error("Should not happen")
             }
 
