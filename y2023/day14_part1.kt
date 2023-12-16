@@ -1,4 +1,4 @@
-package advent.year2023
+package y2023
 
 fun main() {
     fun pivot(matrix: List<String>) =

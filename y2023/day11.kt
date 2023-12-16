@@ -1,4 +1,4 @@
-package advent.year2023
+package y2023
 
 fun main() {
     part1_and_2("part 1",2L)

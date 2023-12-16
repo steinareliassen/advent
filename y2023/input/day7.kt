@@ -1,50 +1,6 @@
-fun main() {
-    fun toCardInt(card: Char) =
-        when (card) {
-            'A' -> 14
-            'K' -> 13
-            'Q' -> 12
-            'J' -> 11
-            'T' -> 10
-            else -> card.digitToInt()
-        }
+package y2023.input
 
-    fun score(card: String) = card.toList()
-        .groupBy { it }
-        .map { it.value.size }.sortedDescending().let {
-            when {
-                it[0] == 5 -> 7
-                it[0] == 4 -> 6
-                it[0] == 3 && it[1] == 2 -> 5
-                it[0] == 3 -> 4
-                it[0] == 2 && it[1] == 2 -> 3
-                it[0] == 2 -> 2
-                else -> 1
-            }
-        }
-
-    fun compare(card: String, ocard: String): Boolean =
-        Pair(toCardInt(card.first()), toCardInt(ocard.first())).let {
-            if (it.first == it.second) compare(card.substring(1), ocard.substring(1))
-            else it.first > it.second
-        }
-
-    println(
-        pokerPlay.split("\n").mapIndexed { index, line ->
-            val (cards, bet) = line.split(" ")
-            (pokerPlay.split("\n").mapIndexed { oindex, oline ->
-                    val (ocards, _) = oline.split(" ")
-                    if (index == oindex) 0
-                    else if (score(cards) == score(ocards)) {
-                        if (compare(cards, ocards)) 1 else 0
-                    } else
-                        if (score(cards) > score(ocards)) 1 else 0
-                }.sum()+1)  * bet.toInt()
-        }.sum()
-    )
-}
-
-val pokerPlay =
+val day7PokerPlay =
     """
         9A35J 469
         75T32 237

@@ -1,3 +1,5 @@
+package y2023
+
 fun main() {
 
     fun hash(carray : String, addVal : Int = 0) : Int =

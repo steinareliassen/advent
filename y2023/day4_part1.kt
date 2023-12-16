@@ -1,6 +1,8 @@
+package y2023
+
 fun main() {
     println(
-    cards.split("\n").map {line ->
+    cards.split("\n").map { line ->
         val (_, cards) = line.split(":")
         val (ticket, winner) = cards.split("|")
         val ticketNums = ticket.split(" ").mapNotNull { try {it.toInt()} catch (e : Exception) {null} }

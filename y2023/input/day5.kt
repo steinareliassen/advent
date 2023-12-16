@@ -1,77 +1,8 @@
-fun main() {
-    day5_part1()
-    day5_part2()
-}
+package y2023.input
 
-fun day5_part1() {
-
-    fun mapToValue(relations: String, value: Long): Long {
-        relations.split("\n").forEach {
-            println(it)
-            val (dest, source, range) = it.split(" ").map { it.trim().toLong() }
-            if (value >= source && value <= source + range) {
-                return dest + (value - source)
-            }
-        }
-        return value
-    }
-
-    seebs.split(" ").map { it.trim().toLong() }.map { i ->
-        soilRelations.fold(Pair(i, i)) { acc, s ->
-            Pair(acc.first, mapToValue(s, acc.second))
-        }
-    }.sortedBy { it.second }.first().let {
-        println("Seeb ${it.first} planted in location ${it.second} <- THIS is the part 1 answer")
-    }
-
-}
-
-fun day5_part2() {
-
-    fun mapToValue(relations: String, value: Long): Long {
-        relations.split("\n").forEach {
-            val (dest, source, range) = it.split(" ").map { it.trim().toLong() }
-            if (value >= source && value <= source + range) {
-                return dest + (value - source)
-            }
-        }
-        return value
-    }
-
-    // There is quite some refactor possibilities here, but I just wanted to get it done quickly :P
-    val seeb = seebs.split(" ").chunked(2).map { (x, y) ->
-        val start = x.toLong()
-        val end = start + y.toLong()
-        (start..end step 50000).map { i ->
-            soilRelations.fold(Pair(i, i)) { acc, s ->
-                Pair(acc.first, mapToValue(s, acc.second))
-            }
-        }.sortedBy { it.second }.first().let {
-            println("Seeb ${it.first} planted in location ${it.second}")
-            Pair(it.first, it.second)
-        }
-    }.sortedBy { it.second }.first().let {
-        println("Seeb ${it.first} planted in location ${it.second}")
-        it.first
-    }
-
-    println("hoaming in!")
-
-    (seeb-50000..seeb+5000).map { i ->
-        soilRelations.fold(Pair(i, i)) { acc, s ->
-            Pair(acc.first, mapToValue(s, acc.second))
-        }
-    }.sortedBy { it.second }.first().let {
-        println("Seeb ${it.first} planted in location ${it.second} <- THIS value is the part 2 answer")
-        Pair(it.first, it.second)
-    }
-
-}
-
-val seebs =
+val day5seebs =
     "1482445116 339187393 3210489476 511905836 42566461 51849137 256584102 379575844 3040181568 139966026 4018529087 116808249 2887351536 89515778 669731009 806888490 2369242654 489923931 2086168596 82891253"
-
-val soilRelations = listOf(
+val day5SoilRelations = listOf(
     """
 3356468240 2934525445 29117552
 4275689831 4042213712 19277465

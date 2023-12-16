@@ -1,3 +1,5 @@
+package y2023
+
 fun main() {
     day9_part1()
     day9_part2()

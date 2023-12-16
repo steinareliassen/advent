@@ -1,3 +1,5 @@
+package y2023
+
 fun main() {
     // part 1
     println(

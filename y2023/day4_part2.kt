@@ -1,9 +1,11 @@
+package y2023
+
 fun main() {
     
     fun strToIntArr(numStr : String) =
         numStr.split(" ").mapNotNull { try {it.toInt()} catch (e : Exception) {null} }
 
-    val cardMap = cardsAgain.split("\n").associate {line ->
+    val cardMap = cardsAgain.split("\n").associate { line ->
         val (idString, cards) = line.split(":")
         val id = idString.substring(4).trim().toInt()
         val (ticket, winner) = cards.split("|")

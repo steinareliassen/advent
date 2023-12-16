@@ -1,3 +1,5 @@
+package y2023
+
 fun main() {
     //
     var currentLocation = Pair(111,15)
@@ -58,7 +60,7 @@ fun main() {
         }
     }
 
-    // Find startingpoint and step one to west and start moving.
+    // Find starting point and step one to west and start moving.
     currentLocation = map.find {
             it.contains("S")
         }.let { line ->
@@ -71,15 +73,7 @@ fun main() {
 
     println(length / 2)
 
-
 }
-var day10test = """
-..F7.
-.FJ|.
-SJ.L7
-|F--J
-LJ...
-""".trimIndent()
 
 var day10input = """
 .7F77F-J-F.LF-|-LL.J-|-F.7-|77L-L.FLFFJ7-7777-|7-F7.LFF--7F.LJ7-J7F-7-FL-7J77|-L-7-F-F--.J7..7FFLJ7..|7.F|--7FL|-|7F--J---JF-LL-L7-|.|-LJ7.F

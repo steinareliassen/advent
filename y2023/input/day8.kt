@@ -1,70 +1,7 @@
-fun main() {
-    part1()
-    part2()
-}
+package y2023.input
 
-fun part1() {
-    val map = getMap()
-    var count = 0
-    var location : String? = "AAA"
-    do {
-        count++
-        location = if (nextDirection() == 'L') map[location]?.first else map[location]?.second
-    } while (location != "ZZZ")
-
-    println(count)
-}
-
-fun part2() {
-    currentDirection = 0
-    val map = getMap()
-    var count = 0L
-    val locations = map.mapNotNull { if( it.key.endsWith("A") ) it.key else null  }.toTypedArray()
-    val cycleCount = Array(locations.size) { 0L }
-    do {
-        count++
-        val direction = nextDirection()
-        (0..locations.size-1).forEach {
-            locations[it] = if (direction == 'L') map[locations[it]]!!.first else map[locations[it]]!!.second
-            if (locations[it].endsWith("Z") && cycleCount[it]==0L) cycleCount[it] = count
-        }
-
-    } while (cycleCount.any { it == 0L })
-    // OK, I don't want to make this tool so I cheated here:
-    println("Output of length of each cycle. Use a Least common multiple tool with these as input to find answer:")
-    cycleCount.forEach {
-        println(it)
-    }
-}
-
-fun nextDirection() =
-    if (currentDirection >= direction.size) {
-        currentDirection = 0
-        direction[currentDirection++]
-    } else direction[currentDirection++]
-
-
-fun getMap() = gps.split("\n").associate { line ->
-    val (a, b) = line.split("=")
-
-    val (c,d) = b.trim().substring(1,b.length-2).split(",")
-    a.trim() to Pair(c.trim(), d.trim())
-}
-
-//val direction = "LR".toList()
-/*val gps = """
-    11A = (11B, XXX)
-    11B = (XXX, 11Z)
-    11Z = (11B, XXX)
-    22A = (22B, XXX)
-    22B = (22C, 22C)
-    22C = (22Z, 22Z)
-    22Z = (22B, 22B)
-    XXX = (XXX, XXX)
-""".trimIndent()*/
-val direction = "LLLLLLLRRRLRRRLRLRLRLRRLLRRRLRLLRRRLLRRLRRLRRLRLRRLRLRRRLRRLRLRRRLRRLRRLRLRRLLRLLRLRRRLRRLRLLLLRRLLLLRLRLRLRRRLRLRLLLRLRRRLRRRLRRRLRLRRLRRRLRLLLRLLRRLRRRLRRLRRLRRLRLRRRLRLRLRLLRRRLRRRLRRLRRRLLLRRLRRLRRRLRLRRRLRRRLRLRRLRRRLRLRRLRLRRLRRRLRLRRLRLLRRRLLRLRRLRRRLLLRLRRLRRRR".toList()
-var currentDirection = 0
-val gps = """
+val day8direction = "LLLLLLLRRRLRRRLRLRLRLRRLLRRRLRLLRRRLLRRLRRLRRLRLRRLRLRRRLRRLRLRRRLRRLRRLRLRRLLRLLRLRRRLRRLRLLLLRRLLLLRLRLRLRRRLRLRLLLRLRRRLRRRLRRRLRLRRLRRRLRLLLRLLRRLRRRLRRLRRLRRLRLRRRLRLRLRLLRRRLRRRLRRLRRRLLLRRLRRLRRRLRLRRRLRRRLRLRRLRRRLRLRRLRLRRLRRRLRLRRLRLLRRRLLRLRRLRRRLLLRLRRLRRRR".toList()
+val day8gps = """
 DGK = (KVQ, XHR)
 KTC = (TVB, MTH)
 CGR = (VVK, BKP)
@@ -796,4 +733,3 @@ LFS = (CVB, BNJ)
 LBS = (JFV, NKC)
 TLL = (THM, GNR)
 """.trimIndent()
-

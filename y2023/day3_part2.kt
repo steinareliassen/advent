@@ -1,3 +1,5 @@
+package y2023
+
 fun main() {
     val matrix = gridagain.split("\n").toTypedArray()
     var num = ""
