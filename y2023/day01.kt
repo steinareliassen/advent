@@ -40,6 +40,7 @@ fun String.replaceLast(oldValue: String, newValue: String, ignoreCase: Boolean =
     val index = lastIndexOf(oldValue, ignoreCase = ignoreCase)
     return if (index < 0) this else this.replaceRange(index, index + oldValue.length, newValue)
 }
+
 val numbers = listOf(1 to "one",2 to "two",3 to "three",
     4 to "four",5 to "five",6 to "six",7 to "seven",8 to "eight",9 to "nine",0 to "NULL")
 

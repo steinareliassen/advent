@@ -1,16 +1,4 @@
-package y2023
-
-fun main() {
-    println(
-    cards.split("\n").map { line ->
-        val (_, cards) = line.split(":")
-        val (ticket, winner) = cards.split("|")
-        val ticketNums = ticket.split(" ").mapNotNull { try {it.toInt()} catch (e : Exception) {null} }
-        val winnerNums = winner.split(" ").mapNotNull { try {it.toInt()} catch (e : Exception) {null} }
-        Math.pow(2.0,(ticketNums.intersect(winnerNums).size-1).toDouble()).toInt()
-    }.sum()
-    )
-}
+package y2023.input
 
 val cards = """
     Card   1:  9 39 27 89 87 29 54 19 43 45 |  9 80 29 20 54 58 78 77 39 35 76 79 19 87 45 89 23 31 94 34 67 43 56 50 27

@@ -1,0 +1,1 @@
+fun String.splitLine() = this.split("\n")
